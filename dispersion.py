@@ -37,7 +37,7 @@ from dispersion_factors import dispersion_factors
 def dispersion(x, fs, a, c0, E, z):
     # Input signal:
     n = len(x)  # Number of elements in signal.
-    f = np.arange(0, n-1) * (fs/n)  # FFT frequencies, Hz.
+    f = np.arange(0, n) * (fs/n)  # FFT frequencies, Hz.
     fmax = 0.2619 * c0/a  # Max correctable frequency due to factor m1 limitations, Hz.
 
     # FFT the signal:
@@ -58,7 +58,7 @@ def dispersion(x, fs, a, c0, E, z):
         # n is odd:
         positive_bins = np.arange(1, (number_of_bins+1)/2)  # Positive frequency bins.
         bins_to_edit = np.array(positive_bins)  # Total bins to edit individually.
-        negative_bins = np.arange((number_of_bins+1)/2+1, number_of_bins)  # Negative frequency bins.
+        negative_bins = np.arange((number_of_bins+1)/2, number_of_bins)  # Negative frequency bins.
 
     for b in bins_to_edit.astype(int):
         if f[b] <= fmax:
